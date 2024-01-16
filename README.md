@@ -59,3 +59,38 @@ sudo apt update ; sudo apt install docker.io
    28  sudo vim /var/run/docker.sock 
    29  sudo cat  /var/run/docker.sock 
 ```
+### docker network
+```
+docker network create net1 --subnet 192.168.0.0/16 
+  223  docker network ls
+  224  docker network inspect net1
+  225  docker network create  net2 
+  226  docker network ls
+  227  docker network inspect net2
+  228  docker run -itd --network net1 --name can1 alpine 
+  229  docker ps
+  230  docker rm -f laughing_feynman 
+  231  docker ps
+  232  docker inspect can1 | grep IPA
+  233  docker run -itd --network net2 --name can3 alpine
+  234  docker ps
+  235  docker inspect can3  | grep IPA
+  236  docker run -itd --network net1 --name can5 alpine
+  237  docker run -itd --network net1 --name can2 alpine
+  238  docker run -itd --network net2 --name can4 alpine
+  239  docker run -itd --network net2 --name can6 alpine
+  240  docker ps
+  241  docker exec -it can1 sh 
+  242  docker run -itd --network none apline
+  243  docker run -itd --network none alpine
+  244  docker ps
+  245  docker inspect eager_ganguly | grep IPA
+  246  docker run -itd --network host --name host alpine
+  247  docker ps
+  248  docker inspect host | grep IPA
+  249  docker exec -it host sh
+  250  ip a
+  251  docker exec -it can1 sh
+  252  docker network connect net2 can1
+  253  docker exec -it can1  sh
+```
