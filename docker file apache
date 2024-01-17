@@ -1,0 +1,11 @@
+FROM ubuntu
+MAINTAINER Poonam
+LABEL name=apache
+LABEL email=pk81071er@gmail.com
+RUN apt update && apt install apache2 -y
+WORKDIR /var/www/html
+RUN rm index.html
+COPY colorlib-regform-15  .
+RUN chown www-data:www-data . -R
+CMD ["apache2ctl", "-D" , "FOREGROUND"]
+~                                              
